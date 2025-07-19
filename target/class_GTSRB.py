@@ -404,8 +404,22 @@ class W10_KL_TrainTest(W_of_10_TrainTest):
         self.train_strategy = 'w10kl'
         self.k = 10
 
+    def __soft_kl_loss(self, output_adv, output):
+        criterion_kl = nn.KLDivLoss(reduction='batchmean')
+        T = 2.0  # 温度参数
+        output_soft = F.log_softmax(output_adv / T, dim=1)
+        target_soft = F.softmax(output / T, dim=1).clamp(min=1e-7)
+        kl_loss = criterion_kl(output_soft, target_soft) * (T * T)
+        return kl_loss
+
+    def __kl_loss(self, output_adv, output):
+        criterion_kl = nn.KLDivLoss(reduction='batchmean')
+        output_soft = F.log_softmax(output_adv, dim=1)
+        target_soft = F.softmax(output, dim=1).clamp(min=1e-10)
+        kl_loss = criterion_kl(output_soft, target_soft)
+        return kl_loss
+
     def train(self, optimizer, epoch):
-        criterion_kl = nn.KLDivLoss(size_average=False)
         self.model.eval()
         strategy = self.worstof10_ll()
         self.model.train()
@@ -416,8 +430,10 @@ class W10_KL_TrainTest(W_of_10_TrainTest):
             output_adv = self.model(self.transform_MR6(data, strategy))
             # loss = F.cross_entropy(output_adv, target)
             # loss = F.cross_entropy(output, target) + F.cross_entropy(output_adv, target)
-            loss = F.cross_entropy(output, target) + (1.0 / args.batch_size) * \
-                   criterion_kl(F.log_softmax(output_adv, dim=1), F.softmax(output, dim=1)).clamp(min=1e-10)
+            #kl_loss = self.__soft_kl_loss(output_adv, output)
+            kl_loss = self.__kl_loss(output_adv, output)
+            loss = F.cross_entropy(output, target) + kl_loss
+            #       criterion_kl(F.log_softmax(output_adv, dim=1), F.softmax(output, dim=1)).clamp(min=1e-10)
             loss.backward()
             optimizer.step()
             # print progress
@@ -496,7 +512,7 @@ def get_gtsrb_model(model_idx):
     }
     gtsrb_lr_dict = {
         1: 0.01,
-        2: 0.005
+        2: 1e-2
     }
     args.lr= gtsrb_lr_dict[model_idx]
     return gtsrb_mode_dict[model_idx]
