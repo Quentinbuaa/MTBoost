@@ -6,25 +6,25 @@ MTBoost is a reinforcement learning–based algorithm designed to improve the **
 
 Traditional metrics like **accuracy** measure how often a DNN predicts the correct label:  
 
-\[
-\text{Accuracy} = \Pr\{F(x) = y\}
-\]  
+`
+Accuracy = Pr{F(x) = y}
+`
 
 However, accuracy alone does not capture **robustness**. Robustness refers to whether a DNN produces consistent predictions under transformations that should not change the label (e.g., image rotation).  
 
 We define robustness using metamorphic relations (MRs), such as:  
 
-\[
-F(x) = F(x') \quad \text{where } x' = T(x)
-\]  
+``
+F(x) = F(x') where  x' = T(x) 
+``
 
 MTBoost improves robustness **without sacrificing accuracy** by optimizing three objectives:  
 
-1. Maximize \(\Pr\{F(x) = y\}\)  
-2. Maximize \(\Pr\{F(x') = y\}\)  
-3. Maximize \(\Pr\{f(x) = f(x')\}\)  
+1. Maximize `\Pr\{F(x) = y\}`  
+2. Maximize `\Pr\{F(x') = y\}`  
+3. Maximize `\Pr\{f(x) = f(x')\}`  
 
-where \(F(x)\) is the predicted label and \(f(x)\) is the raw output (logits).  
+where `F(x)` is the predicted label and `f(x)` is the raw output (logits).  
 
 ## ✨ Features  
 
@@ -32,9 +32,9 @@ where \(F(x)\) is the predicted label and \(f(x)\) is the raw output (logits).
 - Robustness evaluation using metamorphic relations (MRs)  
 - Custom loss function with regularization:  
 
-\[
-\text{Loss} = \text{loss}_1 + \alpha \cdot \text{loss}_2 + \beta \cdot \text{loss}_3
-\]  
+``
+Loss = loss_1 +  α·loss_2 + β·loss_3
+``  
 
 - Applicable to image classification tasks and beyond  
 
