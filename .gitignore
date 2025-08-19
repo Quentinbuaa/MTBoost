@@ -1,0 +1,26 @@
+# Ignore data directory
+data/*
+!data/.gitkeep
+
+
+# Ignore Logs
+Logs/
+
+# Ignore saved checkpoints directory
+SavedCheckpoints/*
+!SavedCheckpoints/.gitkeep
+
+# (Optional) Ignore Python cache and other common junk files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.tmp
+*.log
+
+# (Optional) Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# (Optional) Ignore virtual environments
+venv/
+.env/

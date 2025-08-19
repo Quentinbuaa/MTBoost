@@ -1,0 +1,6 @@
+deap==1.4.1
+numpy==2.3.2
+pandas==1.5.3
+scikit_learn==1.7.1
+torch==2.5.0+cu118
+torchvision==0.20.0
