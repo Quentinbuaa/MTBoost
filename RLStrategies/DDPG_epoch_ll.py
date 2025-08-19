@@ -240,7 +240,8 @@ def ddpg(model,data_loader,step):
                 -1, 1)
             # print(total_steps,act)
             s_next, r, done, train_loss_rob, strategy = env.step(act,model)  # dw: dead&win; tr: truncated
-            agent.replay_buffer.push((s, s_next, act, r, np.float(done)))
+            #agent.replay_buffer.push((s, s_next, act, r, np.float(done))) # np.float is not supported after np.1.24. Thus, replace np.float with just float
+            agent.replay_buffer.push((s, s_next, act, r, float(done)))
 
             if (total_steps >= 2 * max_e_steps):
                 agent.update()

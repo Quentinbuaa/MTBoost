@@ -1,9 +1,6 @@
-# MTBoost: Reinforcement Learning for Robust DNN Classifiers
+# MTBoost: A Reinforcement-Learning-based Training Method for Enhancing the Robustness of Deep Neural Network Classifiers
 
-MTBoost is a reinforcement learning–based algorithm designed to improve the **robustness** of deep neural network (DNN) classifiers, evaluated through **metamorphic relations (MRs)**.  
-
-## 🚀 Introduction  
-
+## 🚀 Introduction
 Traditional metrics like **accuracy** measure how often a DNN predicts the correct label:  
 
 `
@@ -12,31 +9,30 @@ Accuracy = Pr{F(x) = y}
 
 However, accuracy alone does not capture **robustness**. Robustness refers to whether a DNN produces consistent predictions under transformations that should not change the label (e.g., image rotation).  
 
-We define robustness using metamorphic relations (MRs), such as:  
+Robustness can be evaluated with metamorphic relations (MRs), such as:  
 
 ``
-F(x) = F(x') where  x' = T(x) 
+F(x) = F(x') where  x' = T(x;θ), a transformation with x.
 ``
+
 
 MTBoost improves robustness **without sacrificing accuracy** by optimizing three objectives:  
 
-1. Maximize `\Pr\{F(x) = y\}`  
-2. Maximize `\Pr\{F(x') = y\}`  
-3. Maximize `\Pr\{f(x) = f(x')\}`  
+1. Maximize `Pr{F(x) = y}`  
+2. Maximize `Pr{F(x') = y}`  
+3. Maximize `Pr{f(x) = f(x')}`  
 
 where `F(x)` is the predicted label and `f(x)` is the raw output (logits).  
 
 ## ✨ Features  
 
-- Reinforcement learning–based training algorithm  
-- Robustness evaluation using metamorphic relations (MRs)  
-- Custom loss function with regularization:  
+- Custom loss function with regularization:
 
 ``
-Loss = loss_1 +  α·loss_2 + β·loss_3
-``  
+Loss = loss1 +  α·loss2 + β·loss3, where, if loss1 = cross_entropy(F(x), y), loss2=cross_entropy(F(x'), y), and loss3=KLDivLoss(f(x'), f(x))
+``
 
-- Applicable to image classification tasks and beyond  
+- Reinforcement learning–based training algorithm is designed to select `x'=T(x;θ)` after each train epoch.
 
 ## 📦 Installation  
 

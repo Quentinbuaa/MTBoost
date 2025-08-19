@@ -179,7 +179,7 @@ def rl_horizontal_ablation_exp(total_retry_num=5, evalute_immediately= True):
     }
     for dataset_idx in config_dict:
         model_idx = config_dict[dataset_idx]
-        for train_strategy in ['SAC', 'TD3','PPO','DDPG']:
+        for train_strategy in ['DDPG']:#['SAC', 'TD3','PPO','DDPG']:
             for retry in range(1, total_retry_num+1):
                 operator = TrainStrategyFactory(train_strategy,dataset_idx, model_idx, retry)
                 operator.train_strategy+='_ablation'
@@ -230,9 +230,9 @@ def alpha_beta_exp(total_retry_num=5, evalute_immediately= True):
 
 
 if __name__ == '__main__':
-    args.retrain_epochs = 1        #should be set to 100
-    total_retry_num=1             #should be set to 5
-    evalute_immediately =False         #should be set to True
+    args.retrain_epochs = 100        #should be set to 100
+    total_retry_num=5             #should be set to 5
+    evalute_immediately = True         #should be set to True
     effective_exp(total_retry_num, evalute_immediately)
     std_acc_effective_exp(total_retry_num, evalute_immediately)
     sensei_effective_exp(total_retry_num, evalute_immediately)
