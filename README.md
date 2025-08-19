@@ -46,23 +46,18 @@ pip install -r requirements.txt
 
 ## 🛠 Usage  
 
-Run training with:  
+Run all the experiments within our paper:  
 
 ```bash
-python train.py --dataset CIFAR10 --epochs 100 --alpha 0.5 --beta 0.3
+python exp_platform.py 
 ```  
 
-Evaluate robustness:  
-
-```bash
-python evaluate.py --dataset CIFAR10 --checkpoint checkpoints/model.pth
-```  
 
 ## 📊 Experimental Results  
 
-We evaluated MTBoost on benchmark datasets such as CIFAR-10 and MNIST.  
+We evaluated MTBoost on benchmark datasets such as CIFAR-10, SVHN, FashionMNIST, and GTSRB.  
 - Improved robustness (measured via MR satisfaction)  
-- Accuracy maintained within 1% of baseline models  
+- Accuracy maintained compared to the baseline models  
 
 (Detailed results can be added here.)  
 
@@ -72,10 +67,10 @@ If you use MTBoost in your research, please cite:
 
 ```
 @article{yourpaper2025,
-  title={MTBoost: Reinforcement Learning for Robust DNN Classifiers},
-  author={Your Name},
+  title={MT-Boost: A Metamorphic-Testing Based Training Method for Enhancing the Robustness of Deep Neural Network Classifiers},
+  author={Kun Qiu, Yu Zhou, Pak-Lok Poon, Tsong-Yueh Chen},
   year={2025},
-  journal={arXiv preprint arXiv:xxxx.xxxxx}
+  journal={Information and Software Technology}
 }
 ```  
 
