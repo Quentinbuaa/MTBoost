@@ -45,9 +45,9 @@ class SVHNDataset(MyDataset):
 
     def get_loaders(self):
         # setup data loader
-        self.trainset = datasets.SVHN('./data', split='train', download=True, transform=self.train_transforms)
+        self.trainset = datasets.SVHN('../data', split='train', download=True, transform=self.train_transforms)
         self.train_loader = torch.utils.data.DataLoader(self.trainset, batch_size=self.batch_size, shuffle=True)
-        self.testset = datasets.SVHN('./data', split='test', download=True, transform=self.test_transforms)
+        self.testset = datasets.SVHN('../data', split='test', download=True, transform=self.test_transforms)
         self.test_loader = torch.utils.data.DataLoader(self.testset, batch_size=self.batch_size, shuffle=False)
         return self.trainset, self.train_loader, self.testset, self.test_loader
     def get_labels(self):
@@ -92,9 +92,9 @@ class CIFAR10Dataset(MyDataset):
         return TRANSFORMS
 
     def get_loaders(self):
-        self.trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=self.transform_train)
+        self.trainset = torchvision.datasets.CIFAR10(root='../data', train=True, download=True, transform=self.transform_train)
         self.train_loader = torch.utils.data.DataLoader(self.trainset, batch_size=self.batch_size, shuffle=True)
-        self.testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=self.transform_test)
+        self.testset = torchvision.datasets.CIFAR10(root='../data', train=False, download=True, transform=self.transform_test)
         self.test_loader = torch.utils.data.DataLoader(self.testset, batch_size=self.batch_size, shuffle=False)
         return self.trainset, self.train_loader, self.testset, self.test_loader
 
@@ -112,9 +112,9 @@ class GTSRBDataset(MyDataset):
 
     def get_loaders(self):
 
-        self.trainset = datasets.GTSRB(root='./data', split='train', download=True, transform=self.transform)
+        self.trainset = datasets.GTSRB(root='../data', split='train', download=True, transform=self.transform)
         # 加载测试集
-        self.testset = datasets.GTSRB(root='./data', split='test', download=True, transform=self.transform)
+        self.testset = datasets.GTSRB(root='../data', split='test', download=True, transform=self.transform)
         # 创建数据加载器
         self.train_loader = torch.utils.data.DataLoader(self.trainset, batch_size=self.batch_size, shuffle=True)
         self.test_loader = torch.utils.data.DataLoader(self.testset, batch_size=self.batch_size, shuffle=False)
@@ -134,9 +134,9 @@ class FashionMNISTDataset(MyDataset):
 
     def get_loaders(self):
         #Loading  FashionMNIST datasets.
-        self.trainset = datasets.FashionMNIST('./data', train=True, download=True, transform=self.transform)
+        self.trainset = datasets.FashionMNIST('../data', train=True, download=True, transform=self.transform)
         self.train_loader = DataLoader(self.trainset, batch_size=self.batch_size, shuffle=True)
-        self.testset = datasets.FashionMNIST('./data', train=False, download=True, transform=self.transform)
+        self.testset = datasets.FashionMNIST('../data', train=False, download=True, transform=self.transform)
         self.test_loader = DataLoader(self.testset, batch_size=self.batch_size, shuffle=False)
         return self.trainset, self.train_loader, self.testset, self.test_loader
 

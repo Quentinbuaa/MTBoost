@@ -4,7 +4,7 @@ from models.SVHNModels import get_svhn_model
 from models.CIFAR10Models import get_cifar10_model
 from models.GTSRBModels import get_gtsrb_model
 from models.FashionMNISTModels import get_fashionmnist_model
-from Datasets import SVHNDatset, CIFAR10Dataset, GTSRBDataset, FashionMNISTDataset, ThreeChannelledFashionMNISTDataset
+from Datasets import SVHNDataset, CIFAR10Dataset, GTSRBDataset, FashionMNISTDataset, ThreeChannelledFashionMNISTDataset
 from TrainingStrategies import STD_TrainTest, W_of_10_TrainTest, W10_KL_TrainTest, RL_TrainTest, SENSEI_TrainTest
 
 parser = argparse.ArgumentParser()
@@ -50,13 +50,13 @@ def get_model(dataset_idx, model_idx):
     return model
 def get_dataset(dataset_idx, model_idx = 1):
     first_dataset_idx_dict = {
-        'svhn':SVHNDatset(),
+        'svhn':SVHNDataset(),
         'cifar10': CIFAR10Dataset(),
         'fashion_mnist': FashionMNISTDataset(),
         'gtsrb':GTSRBDataset()
     }
     second_dataset_idx_dict = {
-        'svhn': SVHNDatset(),
+        'svhn': SVHNDataset(),
         'cifar10': CIFAR10Dataset(),
         'fashion_mnist': ThreeChannelledFashionMNISTDataset(),
         'gtsrb': GTSRBDataset()

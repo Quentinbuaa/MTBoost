@@ -46,12 +46,19 @@ pip install -r requirements.txt
 
 ## 🛠 Usage  
 
-Run all the experiments within our paper:  
+There are two places that can run our code.
+
+### First, run all the experiments within our paper:  
 
 ```bash
 python exp_platform.py 
 ```  
 
+### Second, just use MTBoost as a tool.
+```bash
+cd MTBoost
+python mtboost.py # you can custome you own dataset and transformations
+```
 
 ## 📊 Experimental Results  
 
